@@ -1,0 +1,34 @@
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body {
+    margin: 0;
+}
+.small-1 {
+    width: 100%;
+    background-color: red;
+}
+
+.small-2, .small-3, .small-4, .small-5 {
+    width: 50%;
+}
+.small-2 {
+    background-color: blue;
+}
+.small-3 {
+    background-color: green;
+}
+.small-4 {
+    background-color: orange;
+}
+.small-5{
+    background-color: gray;
+}
+
+@media (max-width: 480px) {
+    .small-1, .small-2, .small-3, .small-4, .small-5 {
+        width: 100%;
+    }
+}

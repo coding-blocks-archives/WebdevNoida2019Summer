@@ -1,0 +1,36 @@
+.box {
+    width: 400px;
+    height: 400px;
+    background-color: #ffbd39;
+}
+
+.small-box {
+    position: absolute;
+    /* top: 20px; */
+    /* left: 40px; */
+    -webkit-box-shadow: 13px 10px 20px 0px rgba(186,186,186,1);
+    -moz-box-shadow: 13px 10px 20px 0px rgba(186,186,186,1);
+    box-shadow: 13px 10px 20px 0px rgba(186,186,186,1);
+}
+
+.index-1 {
+    background-color: #090088;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+}
+.index-1 p:nth-child(2){
+    color: blue;
+}
+.index-2 {
+    background-color: #930077;
+    width: 80px;
+    height: 80px;
+    z-index: 99;
+}
+.index-3 {
+    background-color: #e4007c;
+    width: 100px;
+    height: 100px;
+    z-index: 98;
+}

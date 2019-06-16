@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+}
+
+.small-1, .small-2, .small-3 {
+    width: 33.33%;
+    display: inline-block;
+    /* float: left; */
+}
+.small-1 {
+    background-color: aqua;
+    /* float: left;
+    overflow: hidden; */
+}
+.small-2 {
+    background-color: burlywood;
+    /* float: left;
+    overflow: hidden; */
+}
+.small-3 {
+    background-color: crimson;
+    /* float: right;
+    overflow: hidden; */
+}
+
+@media (min-width: 500px) and (max-width: 700px){
+    .small-1, .small-2, .small-3 {
+        width: 50%;
+    }
+    .small-3 {
+        width: 100%;
+    }
+}
+@media (max-width: 500px )  {
+    .small-1, .small-2, .small-3 {
+        width: 100%;
+    }
+    .small-1 {
+        color: black;
+    }
+    .small-2 {
+        color: green;
+    }
+    .small-3 {
+        color: orange;
+    }
+}
+
