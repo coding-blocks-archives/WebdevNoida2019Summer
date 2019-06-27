@@ -1,4 +1,5 @@
 
+
 readFile('main.txt', function(data){
     convertToString(data, function(td){
         getRidofSpace(td, function(ws){

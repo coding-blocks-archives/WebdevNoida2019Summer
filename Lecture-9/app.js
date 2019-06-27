@@ -2,8 +2,7 @@
 function readFile(name, cb) {
     // Reading the text from the file
     setTimeout(function(){
-        let data = 'Hello World';
-        cb(data)
+        cb(name)
     },0) 
 }
 function convertToString(data, cb) {
