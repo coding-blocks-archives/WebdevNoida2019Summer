@@ -14,6 +14,13 @@ function addTodo() {
   localStorage.setItem('taskList', JSON.stringify(todoList));
   li.innerText = val;
   list.appendChild(li);
+  fetch('/task?q='+ val)
+    .then(function(data){
+       if(data.status != 200)  return;
+       data.text().then(function(d){
+         console.log(d);
+       })
+    })
 
   //fetch
   // task?name=
@@ -22,11 +29,18 @@ function addTodo() {
 btn.onclick = addTodo;
 
 function refresh() {
-    todoList= JSON.parse(localStorage.getItem('taskList')) || [];
-
-    todoList.forEach(function(val){
+  //  todoList= JSON.parse(localStorage.getItem('taskList')) || [];
+   fetch('/display')
+    .then((data)=>{
+      if(data.status != 200) return;
+      data.json().then((todoList)=> { 
+        todoList.forEach(function(val){
         var li = document.createElement('li');
         li.innerText = val;
         list.appendChild(li);
+      })
+
+    });
     })
+   
 }
