@@ -5,7 +5,9 @@ const passport = require('passport');
 const passportLocal = require('passport-local').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-
+const bcrypt = require('bcrypt');
+const saltrounds = 10;
+const db = require('./db');
 
 //initialize step
 app.use(bodyParser.json());
@@ -27,13 +29,13 @@ app.post('/login', passport.authenticate('local',
 //Strategy
 passport.use(new passportLocal(
     function(username, password, done){
-        if(username !== 'Aayush'){
-         return done(null, false, {message: 'Username is incorrect'})
-        }
-        if(password !== 'aa1234') {
-            return done(null, false, {message: 'Password is incorrect'})
-        }
-        return done(null, username)
+        db.getfromDb(username, function(pass){
+            pass = pass[0].password;
+            bcrypt.compare(password, pass, function(err, res) {
+                if(res)  return done(null, username)
+                else  return done(null, false, {message: 'Password is incorrect'})
+            });   
+        })
     }
     
 ))
@@ -41,7 +43,7 @@ passport.use(new passportLocal(
 passport.serializeUser(function(user, done){
     done(null, user)
 })
-passport.deserializeUser(function(user, done){
+passport.deserializeUser(function(user, done){ 
     done(null, user)
 })
 
@@ -55,6 +57,20 @@ app.get('/addCart', (req, res)=>{
     if(req.user) res.send("Access")
     else res.send('Access Denied')
 })
+
+app.post('/signup', (req, res)=>{
+    let name = req.body.username;
+    let password = req.body.password;
+    bcrypt.hash(password, saltrounds, function(err, hash){
+        if(err) throw err;
+        db.InsertintoDb(name, hash, function(){
+            res.sendStatus(200);
+        })
+    })
+   
+   
+})
 app.listen(5000, ()=>{
     console.log("server listening")
+    db.connection.connect();
 })
