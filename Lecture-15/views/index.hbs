@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <p>Name is </p>{{name}}
+        <p>Roll No is </p>{{RollNo}}
+         {{#marks}}
+           <p>The student1 scored</p> {{../c}}
+           {{#if c}}
+            <p>This is {{c}}</p>
+           {{/if}}
+           
+            {{ds}}
+            {{automata}}
+         {{/marks}}
+         {{#each students}}
+            
+           {{#if this.rollNo}}
+              <p>Name: {{this.name}}</p>
+              <p>Roll No: {{this.rollNo}}</p>
+           {{/if}}
+           
+          
+         {{/each}}
+         {{students.[0].name}}
+    </body>
+</html>
